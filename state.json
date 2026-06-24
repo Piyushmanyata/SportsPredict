@@ -1,0 +1,194 @@
+{
+  "meta": {
+    "version": "v8-final",
+    "as_of": "2026-06-24",
+    "event": "Jump Trading Probability Cup 2026",
+    "event_id": "aa5572ec-5930-4d99-b06b-f8966333d172",
+    "lobby_id": "8df8038c-fd2c-4a5f-be4e-0e11d5966c05"
+  },
+
+  "calibration": {
+    "mark_20":  {"n": 20,  "mean_brier": 0.2356, "self_expected": 0.2214, "gap": 0.0142, "gap_sigma": 0.5,  "status": "GREEN"},
+    "mark_79":  {"n": 79,  "mean_brier": 0.2467, "self_expected": 0.2225, "gap": 0.0242, "gap_sigma": 1.5,  "status": "AMBER"},
+    "mark_118": {"n": 118, "mean_brier": 0.2326, "self_expected": 0.2173, "gap": 0.0152, "gap_sigma": 1.13, "status": "AMBER-softening"},
+    "current":  {"n": 443, "mean_brier": 0.2240, "self_expected": null,   "gap": null,   "gap_sigma": null, "status": "NEEDS_AUDIT"}
+  },
+
+  "lessons": [
+    {
+      "id": "L1",
+      "summary": "Don't overrate hosts/favorites — keep devigged 1X2 line",
+      "status": "CONFIRMED",
+      "n": 35,
+      "directional_consistency": true,
+      "action": "Use devigged anchor as-is; do not shade toward larger favorite number.",
+      "operative": true
+    },
+    {
+      "id": "L2",
+      "summary": "Even matchups carry heavy draw mass",
+      "status": "ACTIVE",
+      "n": 15,
+      "directional_consistency": true,
+      "action": "Don't overprice either win or star-goal when win bands are 40-60.",
+      "operative": true
+    },
+    {
+      "id": "L3",
+      "summary": "Strict 'more than' markets lose on ties (tie-trap)",
+      "status": "CONFIRMED",
+      "n": 32,
+      "directional_consistency": true,
+      "action": "Use §5.4 Bessel exact table for all comparison markets. P(tie) is rich; 50 is the richest well.",
+      "formula": "P(tie) = e^{-(λA+λB)} * I0(2*sqrt(λA*λB))",
+      "operative": true
+    },
+    {
+      "id": "L4",
+      "summary": "Player 1+ SOT >> player goal in market value",
+      "status": "ACTIVE",
+      "n": 12,
+      "directional_consistency": true,
+      "action": "Prioritise SOT markets for player props. Higher RBP opportunity.",
+      "operative": true
+    },
+    {
+      "id": "L5",
+      "summary": "Penalty/Red card are noise markets",
+      "status": "CONFIRMED",
+      "n": 18,
+      "directional_consistency": true,
+      "action": "Stay near base rates: pen/red ~28%, penalty only ~17%. Absorb bad Briers; don't shade.",
+      "operative": true
+    },
+    {
+      "id": "L6",
+      "summary": "T-floor for even matchups — never drag T >0.1 below anchor",
+      "status": "PROVISIONAL",
+      "n": 6,
+      "directional_consistency": true,
+      "action": "PROVISIONAL — not an operative rule. For no-anchor matches: +0.2-0.3 to base rate T.",
+      "operative": false
+    },
+    {
+      "id": "L7",
+      "summary": "Striker SOT: discount in team λ allocation (merged into L10)",
+      "status": "ACTIVE",
+      "n": 10,
+      "directional_consistency": true,
+      "action": "Adjust λ allocation within team, not final output. See L10.",
+      "operative": true
+    },
+    {
+      "id": "L8",
+      "summary": "Correlation cap: >4 markets sharing one latent axis → batched MC",
+      "status": "ACTIVE",
+      "n": 8,
+      "directional_consistency": true,
+      "action": "Proactively run L8 Monte Carlo for near-horizon matches where >4 markets share one axis (goals, SOT, corners). QAT-SUI is canonical example.",
+      "operative": true
+    },
+    {
+      "id": "L9",
+      "summary": "HT-tied ≤47 unless T<2.2 (Bessel table §5.5)",
+      "status": "ACTIVE",
+      "n": 12,
+      "directional_consistency": true,
+      "action": "Use Bessel table for HT tie. Cap at 47 for T≥2.2. For T<2.2, can go up to 47-50.",
+      "operative": true
+    },
+    {
+      "id": "L10",
+      "summary": "56-70% band overpriced — ran -16.8pt hot at n=18@118",
+      "status": "ACTIVE",
+      "n": 18,
+      "directional_consistency": true,
+      "action": "INPUT-SIDE only: striker SOT band lowered to 52-64 (was 60-72). Modeled-prob driver gate for 56-70 range. NO output floor/ceiling.",
+      "band_before": "0.60-0.72",
+      "band_after":  "0.52-0.64",
+      "operative": true
+    },
+    {
+      "id": "L11",
+      "summary": "50-55% band underpriced — WEAKENING at n=13",
+      "status": "PROVISIONAL",
+      "n": 13,
+      "directional_consistency": true,
+      "cold_at_n7": "+17.4pt cold",
+      "cold_at_n13": "+8.2pt cold (weakening)",
+      "action": "PROVISIONAL — track; do not bump outputs. Coherent mirror of L10.",
+      "operative": false
+    },
+    {
+      "id": "L12",
+      "summary": "Win markets run hot (n=10@118, 0.303 Brier vs 0.209 expected)",
+      "status": "ACTIVE",
+      "n": 10,
+      "directional_consistency": true,
+      "action": "INPUT-SIDE: firmer Dixon-Coles draw inflation + more fundamentals weight in 40-60 win band. Symmetric: low underdogs over-win, modest favs miss. NO floor.",
+      "examples_over_win": ["CIV 26→W", "AUS 20→W", "KOR 37→W"],
+      "examples_miss":     ["NED 48→NO", "BRA 56→NO", "CAN 53→NO"],
+      "operative": true
+    },
+    {
+      "id": "L13",
+      "summary": "RBP-first ranking — confirmed (math/contest rule)",
+      "status": "CONFIRMED",
+      "n": 100,
+      "directional_consistency": true,
+      "action": "Rank by weighted RBP not raw Brier. Best match = CAN-BIH +60.67 RBP (beat crowd across markets).",
+      "operative": true
+    },
+    {
+      "id": "L14",
+      "summary": "Goal overdispersion confirmed (Goldman evidence)",
+      "status": "CONFIRMED",
+      "n": 50,
+      "directional_consistency": true,
+      "action": "~1200 excess goalless games + fat 4+ tail vs pure Poisson(1.305). Use Dixon-Coles ±3 correction cap. Strengthens draw inflation.",
+      "operative": true
+    },
+    {
+      "id": "L15",
+      "summary": "Favourite-longshot crowd bias (research flag only)",
+      "status": "ACTIVE",
+      "n": 8,
+      "directional_consistency": true,
+      "action": "Crowd over-prices mid-tier names, under-prices dominant favs. NEVER a fade rule — only allocates extra research to plausibly biased markets.",
+      "operative": false
+    }
+  ],
+
+  "prime_directives": {
+    "D1": "Zero-miss: No match reaches T-12h uncovered. Depth Pass inside T-24h.",
+    "D2": "Calibration is strategy: Submit true probability. Never shade to/from crowd.",
+    "D3": "Integers 1-99 only. Avoid exactly 50. Revise via update_prediction.",
+    "D4": "Never fabricate. Missing data → base-rate fallback, label LOW, still submit.",
+    "D5": "list_markets always with match_id.",
+    "D6": "All writes via submit_predictions_batch (≤50/call). 429 → back off 30-60s.",
+    "D7": "Deadline = kickoff (opening_time). Never post-kickoff edits.",
+    "D8": "All times in IST (UTC+5:30). NA kickoffs roll into next IST day.",
+    "D9": "Numbers, sources, drivers. No filler. Quantify uncertainty.",
+    "D10": "No static ledgers. Pull live from list_predictions/list_results each session.",
+    "D11": "Audit guardrail: PROVISIONAL not operative until ACTIVE (n≥8). No floors from single sessions.",
+    "D12": "RBP-first: rank by weighted RBP. Submit honest p; research allocation by crowd-edge."
+  },
+
+  "base_rates": {
+    "penalty_or_red": 0.28,
+    "penalty_only": 0.17,
+    "cards_4plus": 0.17,
+    "cards_2plus_2h": 0.32,
+    "offside_2plus": 0.42,
+    "player_sot_striker": {"lo": 0.52, "hi": 0.64, "note": "v8 band (was 0.60-0.72)"},
+    "player_sot_winger":  {"lo": 0.42, "hi": 0.56},
+    "player_sot_midfielder": {"lo": 0.35, "hi": 0.48}
+  },
+
+  "scoring": {
+    "brier_formula": "(p - o)^2, lower is better",
+    "rbp_formula": "(crowd_brier - your_brier) * 100 * stage_weight",
+    "edge_identity": "E[RBP] = 100 * [(c-p)^2 - (q-p)^2], submit q=p always",
+    "stage_weights": {"group": 1, "knockout": 2, "final": 3}
+  }
+}
