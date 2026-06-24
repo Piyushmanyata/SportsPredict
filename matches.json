@@ -91,7 +91,6 @@
       "closing_time": "2026-06-25T03:30:00.000Z",
       "stage": "group",
       "coverage_status": "COVERED",
-      "open_market_count": 9,
       "markets": [
         {"id": "399c0c0c-dcd0-4e51-a95c-1289efc7aa8d", "q": "Will Czechia win the match?", "archetype": "win"},
         {"id": "82e3b748-c15c-484a-aa50-46c3773ea827", "q": "Will Czechia commit more fouls than Mexico?", "archetype": "fouls_more"},
@@ -170,7 +169,7 @@
       "opening_time": "2026-06-25T23:00:00.000Z",
       "closing_time": "2026-06-26T01:30:00.000Z",
       "stage": "group",
-      "coverage_status": "UNKNOWN",
+      "coverage_status": "COVERED",
       "markets": [
         {"id": "6acf741f-5327-4cc1-a8ff-aa459d4d3a34", "q": "Will Japan win the match?", "archetype": "win"},
         {"id": "1ad780fa-173e-4f9b-bbfc-b3064a76bc5c", "q": "Will the match have 2 or fewer total goals?", "archetype": "under25"},
@@ -190,7 +189,7 @@
       "opening_time": "2026-06-25T23:00:00.000Z",
       "closing_time": "2026-06-26T01:30:00.000Z",
       "stage": "group",
-      "coverage_status": "UNKNOWN",
+      "coverage_status": "COVERED",
       "markets": [
         {"id": "b880cd6f-b6ec-4e4c-b96b-b91fc589b2b0", "q": "Will Tunisia commit more fouls than Netherlands?", "archetype": "fouls_more"},
         {"id": "c43096e6-d2f5-4879-9af7-de2f242829f3", "q": "Will both teams have at least 1 shot on target in the second half?", "archetype": "both_sot_2h"},
@@ -210,7 +209,7 @@
       "opening_time": "2026-06-26T02:00:00.000Z",
       "closing_time": "2026-06-26T04:30:00.000Z",
       "stage": "group",
-      "coverage_status": "UNKNOWN",
+      "coverage_status": "COVERED",
       "markets": [
         {"id": "d542391d-73f9-4ffa-997f-60fd781954d7", "q": "Will Türkiye win the match?", "archetype": "win"},
         {"id": "ae075ae1-947a-46e2-8ed4-18970d0d5869", "q": "Will the match have 3 or more total goals?", "archetype": "over25"},
@@ -230,8 +229,7 @@
       "opening_time": "2026-06-26T02:00:00.000Z",
       "closing_time": "2026-06-26T04:30:00.000Z",
       "stage": "group",
-      "coverage_status": "UNKNOWN",
-      "open_market_count": 9,
+      "coverage_status": "COVERED",
       "markets": [
         {"id": "72103e92-79ab-46f5-9655-56c82b11537e", "q": "Will Paraguay win the match?", "archetype": "win"},
         {"id": "9a7e797b-c891-4939-ba4f-d2452328c1af", "q": "Will Australia be caught offside 2 or more times?", "archetype": "offside_2plus"},
@@ -243,21 +241,246 @@
         {"id": "b94bad54-14e4-4cf2-8e3e-3475001e5a29", "q": "Will there be 4 or more total cards shown?", "archetype": "cards_4plus"},
         {"id": "99a613f2-bdf5-437e-aebf-ff291ad9d288", "q": "Will Julio Enciso have at least 1 shot on target?", "archetype": "player_sot", "player": "Julio Enciso", "position": "winger"}
       ]
+    },
+    {
+      "id": "82a50c24-ee1a-4588-8652-02a0f79206e5",
+      "name": "NOR vs FRA",
+      "opening_time": "2026-06-26T19:00:00.000Z",
+      "closing_time": "2026-06-26T21:30:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "e769d43d-68d7-45da-a2bc-e3952c9b14d4", "q": "Will Norway win the match?", "archetype": "win"},
+        {"id": "820b13fd-850c-4e17-a579-c998d84542d6", "q": "Will Norway commit more fouls than France?", "archetype": "fouls_more"},
+        {"id": "7a130803-fbae-4e21-a52c-5d69a60ee2d3", "q": "In the second half, will Norway have more corner kicks than France?", "archetype": "corners_more_2h"},
+        {"id": "8b2ac43c-517b-44b7-8417-a8fc3ddc91e4", "q": "Will France have more shots on target than Norway in the second half?", "archetype": "sot_more_2h"},
+        {"id": "a760be07-bcf4-47a3-9e92-12364ea2c469", "q": "Will a penalty kick be awarded OR a red card be shown in the match?", "archetype": "pen_or_red"},
+        {"id": "79a582c4-cd85-42c0-96cb-62d02d76df39", "q": "Will both teams score AND the match have 3 or more total goals?", "archetype": "btts_and_o25"},
+        {"id": "4b834c82-fa96-4553-b819-406aa4d84e74", "q": "Will France score in the second half?", "archetype": "score_2h"},
+        {"id": "b832694d-f726-411f-8f65-019adcb4300b", "q": "Will there be 8 or more total shots on target?", "archetype": "sot_8plus"},
+        {"id": "7d3e7e2f-9431-43b0-8c28-85b85cea10c0", "q": "Will Norway score at least 1 goal?", "archetype": "score"},
+        {"id": "dfec43ab-c159-4e45-927c-91fb23cfd0cb", "q": "Will France score in the first half?", "archetype": "score_1h"}
+      ]
+    },
+    {
+      "id": "236d7678-555c-42cc-99ea-91f59c0edd9e",
+      "name": "SEN vs IRQ",
+      "opening_time": "2026-06-26T19:00:00.000Z",
+      "closing_time": "2026-06-26T21:30:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "98025628-31c6-4c67-aa35-f2d2e707843d", "q": "At halftime, will Iraq have more corner kicks than Senegal?", "archetype": "corners_more_ht"},
+        {"id": "eec6115c-c5cd-42a2-a464-9833f71d8f6c", "q": "Will Iraq be caught offside 2 or more times?", "archetype": "offside_2plus"},
+        {"id": "85f51a2a-412f-41ee-b04b-bb0fbf465867", "q": "Will Iraq receive more cards than Senegal?", "archetype": "cards_more"},
+        {"id": "5618e01b-c0f1-4e26-b591-a4642f0a57da", "q": "Will both teams score AND the match have 3 or more total goals?", "archetype": "btts_and_o25"},
+        {"id": "a394d05e-8bae-4a79-8353-d48ca39623d0", "q": "Will Iraq commit more fouls than Senegal?", "archetype": "fouls_more"},
+        {"id": "58a00fb0-57d2-413b-b7d7-294f6ee24144", "q": "Will there be 4 or more total shots on target in the second half?", "archetype": "sot_4plus_2h"},
+        {"id": "8acfae2d-9dfa-441b-bd3c-ccd1b272b208", "q": "Will Sadio Mané have at least 1 shot on target in the second half?", "archetype": "player_sot", "player": "Sadio Mané", "position": "striker"},
+        {"id": "aaf82bff-2ff9-4dc8-bce6-aceedd49b5f8", "q": "Will Senegal have more shots on target than Iraq in the second half?", "archetype": "sot_more_2h"},
+        {"id": "770ad5f3-f151-4774-8ce8-648ed9fedda4", "q": "Will Senegal win the match?", "archetype": "win"},
+        {"id": "8c8c3f98-ee29-44ba-8ce9-668ab7cacf63", "q": "Will Mohanad Ali score or assist a goal (excluding own goals)?", "archetype": "player_goal_or_assist", "player": "Mohanad Ali", "position": "striker"}
+      ]
+    },
+    {
+      "id": "739bd122-6bcb-4690-8439-c5ca45f8bc22",
+      "name": "CPV vs KSA",
+      "opening_time": "2026-06-27T00:00:00.000Z",
+      "closing_time": "2026-06-27T02:30:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "f16fed56-b5a2-4d37-9553-ac4196eac2c0", "q": "Will Cape Verde commit more fouls than Saudi Arabia?", "archetype": "fouls_more"},
+        {"id": "085e6d40-55c7-4070-b356-fcdba73edb6b", "q": "Will both teams have at least 1 shot on target in the second half?", "archetype": "both_sot_2h"},
+        {"id": "ddb0aebe-cbe0-4040-963a-6096f6b5571f", "q": "Will Saudi Arabia receive more cards than Cape Verde?", "archetype": "cards_more"},
+        {"id": "ae22aa51-8a21-4455-9086-ca124c9c2656", "q": "Will a penalty kick be awarded in the match?", "archetype": "penalty"},
+        {"id": "53d1cfb1-c433-4bf5-bb0e-2d9b82cfec0e", "q": "Will Cape Verde be caught offside 2 or more times?", "archetype": "offside_2plus"},
+        {"id": "bab6a5eb-1f7f-4185-b833-86c0335b15a3", "q": "Will Saudi Arabia have more shots on target than Cape Verde in the second half?", "archetype": "sot_more_2h"},
+        {"id": "1e222611-391d-4b26-af5a-0ef123f62151", "q": "Will Cape Verde win the match?", "archetype": "win"},
+        {"id": "ac0602d9-157b-4f67-a473-7838dbef8c9d", "q": "Will Cape Verde score in the second half?", "archetype": "score_2h"},
+        {"id": "112dde24-c7b1-4f24-98d3-24860e7b9088", "q": "Will Ryan Mendes score or assist a goal (excluding own goals)?", "archetype": "player_goal_or_assist", "player": "Ryan Mendes", "position": "winger"},
+        {"id": "37561adf-2575-4b0e-946a-3554bf110416", "q": "Will Salem Al-Dawsari score a goal (excluding own goals)?", "archetype": "player_goal", "player": "Salem Al-Dawsari", "position": "striker"}
+      ]
+    },
+    {
+      "id": "af3dcfc5-29ac-423c-b9ae-62093c105955",
+      "name": "URU vs ESP",
+      "opening_time": "2026-06-27T00:00:00.000Z",
+      "closing_time": "2026-06-27T02:30:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "e3b6f5b3-e5f0-4f9c-8453-121aa08d0e9e", "q": "Will Uruguay commit more fouls than Spain?", "archetype": "fouls_more"},
+        {"id": "f3ecfd87-4562-4e01-afd7-5e89c3db468b", "q": "In the second half, will Uruguay have more shots on target than Spain?", "archetype": "sot_more_2h"},
+        {"id": "6dd84759-11e1-408d-8d60-5eb46f13197e", "q": "Will Dani Olmo have at least 1 shot on target in the second half?", "archetype": "player_sot", "player": "Dani Olmo", "position": "midfielder"},
+        {"id": "d65224ff-c16d-4f3a-ab5c-e389871cecf1", "q": "Will Uruguay score at least 1 goal?", "archetype": "score"},
+        {"id": "2b098e01-ee28-4740-a472-0e47702583de", "q": "At halftime, will the match be tied?", "archetype": "ht_tied"},
+        {"id": "0399ea52-41c2-48b7-b304-5d915cffa527", "q": "Will the match have 2 or fewer total goals?", "archetype": "under25"},
+        {"id": "cb8219c4-07cd-4d69-8c99-297c9a8c8944", "q": "Will the second half have 2 or more total goals?", "archetype": "2h_goals_2plus"},
+        {"id": "ecdf6acb-eef7-45de-88ad-cab0ecf41882", "q": "Will there be 9 or more total corner kicks in the match?", "archetype": "corners_9plus"},
+        {"id": "8392278e-6be8-46dc-89c7-456cb123846c", "q": "Will there be 4 or more total cards shown?", "archetype": "cards_4plus"},
+        {"id": "9d58ebc6-35db-495e-87a8-82d61798e640", "q": "Will Darwin Núñez have at least 1 shot on target?", "archetype": "player_sot", "player": "Darwin Núñez", "position": "striker"}
+      ]
+    },
+    {
+      "id": "f24da99f-ccaf-451f-ae8b-f402047ee832",
+      "name": "EGY vs IRN",
+      "opening_time": "2026-06-27T03:00:00.000Z",
+      "closing_time": "2026-06-27T05:30:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "528c633c-2c27-484e-aae2-ffd8bfc11274", "q": "Will Iran be caught offside 2 or more times?", "archetype": "offside_2plus"},
+        {"id": "b78c46e8-557c-4f5e-98b9-cb0774335119", "q": "Will Iran have more shots on target than Egypt in the second half?", "archetype": "sot_more_2h"},
+        {"id": "ac02e3c7-ad61-4f98-85bf-c0b8aa80a3be", "q": "Will Iran finish with more corner kicks than Egypt?", "archetype": "corners_more"},
+        {"id": "9d76af0a-07d6-4e3e-83e7-a7fcfcc5f6c0", "q": "Will Egypt win the match?", "archetype": "win"},
+        {"id": "b749e570-1132-4c04-ad87-eb084a4f8b2f", "q": "Will the match have 2 or fewer total goals?", "archetype": "under25"},
+        {"id": "537c8858-c51b-4f52-976a-d4822594f93b", "q": "Will the second half have 2 or more total goals?", "archetype": "2h_goals_2plus"},
+        {"id": "1f08b2aa-1cf4-4f3e-8ac9-a38d13476dd7", "q": "Will there be 4 or more total cards shown?", "archetype": "cards_4plus"},
+        {"id": "6ae1692b-b794-4d64-8862-f7a42865b5d8", "q": "Will Egypt have 3 or more shots on target?", "archetype": "sot_3plus"},
+        {"id": "b3442350-1e03-42e0-8310-d83af5f99fdb", "q": "Will Mahmoud Trezeguet have at least 1 shot on target?", "archetype": "player_sot", "player": "Mahmoud Trezeguet", "position": "winger"},
+        {"id": "9b10408f-a5b9-4586-a4d1-ef3269ad60fc", "q": "Will Mehdi Taremi have at least 1 shot on target?", "archetype": "player_sot", "player": "Mehdi Taremi", "position": "striker"}
+      ]
+    },
+    {
+      "id": "790fcb5f-e9ae-4b31-9608-17977ef89a1a",
+      "name": "New Zealand vs BEL",
+      "opening_time": "2026-06-27T03:00:00.000Z",
+      "closing_time": "2026-06-27T05:30:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "0a58473c-5d91-405d-bc16-cb2de57a9a0c", "q": "At halftime, will both teams have at least 1 shot on target?", "archetype": "both_sot_1h"},
+        {"id": "9282f983-7e74-48c2-ae92-64d972164a32", "q": "Will New Zealand commit more fouls than Belgium?", "archetype": "fouls_more"},
+        {"id": "6c1ae3e9-01e0-436a-b4ee-55bd54171708", "q": "Will Belgium receive at least 1 card in the second half?", "archetype": "card_2h"},
+        {"id": "37014a9f-5ab2-43f5-baa4-6bd2dbc1bd97", "q": "Will both teams score AND the match have 3 or more total goals?", "archetype": "btts_and_o25"},
+        {"id": "9eabe9c0-6ec7-4702-8540-04ee755c323c", "q": "Will New Zealand have 2 or more shots on target in the second half?", "archetype": "sot_2plus_2h"},
+        {"id": "bb023eb2-d88e-4317-a475-2526f87276c3", "q": "Will New Zealand receive more cards than Belgium?", "archetype": "cards_more"},
+        {"id": "ae0232d1-b5ec-440f-a0aa-fd816ce7550e", "q": "Will New Zealand score at least 1 goal?", "archetype": "score"},
+        {"id": "ee0f2ad4-846e-43ca-8166-01593619dd44", "q": "Will Belgium score in the second half?", "archetype": "score_2h"},
+        {"id": "84aaece6-6111-4a5a-a77a-a97f9ff13afe", "q": "Will Belgium have 4 or more shots on target?", "archetype": "sot_4plus"},
+        {"id": "66ed62a5-c4f6-4938-9287-e17c2743ca64", "q": "Will Youri Tielemans have at least 1 shot on target?", "archetype": "player_sot", "player": "Youri Tielemans", "position": "midfielder"}
+      ]
+    },
+    {
+      "id": "780369fb-f757-4166-998b-c2db986f87f4",
+      "name": "CRO vs GHA",
+      "opening_time": "2026-06-27T21:00:00.000Z",
+      "closing_time": "2026-06-27T23:30:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "33e7f75a-cc38-4762-86f1-32fc2fb975cc", "q": "Will Ghana be caught offside 2 or more times?", "archetype": "offside_2plus"},
+        {"id": "9c41d950-c256-43af-80db-076ed84dc567", "q": "Will a penalty kick be awarded OR a red card be shown in the match?", "archetype": "pen_or_red"},
+        {"id": "bb1836ef-4d8b-4360-8482-e474be117aec", "q": "Will Luka Sučić have at least 1 shot on target in the second half?", "archetype": "player_sot", "player": "Luka Sučić", "position": "midfielder"},
+        {"id": "ccbcf840-6275-4403-8791-02c64bdd1893", "q": "Will there be 4 or more total shots on target in the second half?", "archetype": "sot_4plus_2h"},
+        {"id": "0e3f5b26-a800-414a-8c74-d3056ea293c0", "q": "Will Croatia win the match?", "archetype": "win"},
+        {"id": "3555d723-0ef3-4c1a-86c4-b9bccc02d650", "q": "At halftime, will Croatia be winning?", "archetype": "ht_winning"},
+        {"id": "c499a3e6-92f2-4b44-bac2-751ec61acf56", "q": "Will Croatia score in the second half?", "archetype": "score_2h"},
+        {"id": "6a29d849-2b3f-4a64-b2b6-3f034b2a5b2b", "q": "Will there be 9 or more total corner kicks?", "archetype": "corners_9plus"},
+        {"id": "43ae8180-e10c-418d-89ab-e5a42e58d702", "q": "Will Croatia have 6 or more shots on target?", "archetype": "sot_6plus"},
+        {"id": "2e61a108-671a-4024-b421-aa67e7b8105d", "q": "Will Antoine Semenyo have at least 1 shot on target?", "archetype": "player_sot", "player": "Antoine Semenyo", "position": "winger"}
+      ]
+    },
+    {
+      "id": "3d8d1b96-0cca-4fd5-8f21-ad44f457d689",
+      "name": "PAN vs ENG",
+      "opening_time": "2026-06-27T21:00:00.000Z",
+      "closing_time": "2026-06-27T23:30:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "00f8764b-b25b-4da2-8b8b-2a0e53eede10", "q": "Will Panama score at least 1 goal?", "archetype": "score"},
+        {"id": "97a01954-750b-4bfb-8269-ad7e48dec873", "q": "Will Panama commit more fouls than England?", "archetype": "fouls_more"},
+        {"id": "6913dd4d-f020-4955-b562-c9c5458a32f0", "q": "Will there be 4 or more total shots on target in the second half?", "archetype": "sot_4plus_2h"},
+        {"id": "b3b81826-7b60-468a-b71e-43838587f0d7", "q": "Will Panama score the first goal of the game and England score in the second half?", "archetype": "compound_first_and_2h"},
+        {"id": "90b29cc0-7b7a-4aed-8703-b91967fe6225", "q": "Will a penalty kick be awarded OR a red card be shown?", "archetype": "pen_or_red"},
+        {"id": "d793a499-ddd9-4eab-8c07-4be160366653", "q": "At halftime, will the match be tied?", "archetype": "ht_tied"},
+        {"id": "b394df3c-cd76-4d91-a9e6-d654162adab2", "q": "Will the match have 3 or more total goals?", "archetype": "over25"},
+        {"id": "91d86b83-bac0-49dd-ba31-bbde0983c2d2", "q": "Will there be 5 or more total corner kicks in the second half?", "archetype": "corners_5plus_2h"},
+        {"id": "aad59e42-0d36-4261-aa3f-8e95a96fcd47", "q": "Will José Fajardo have at least 1 shot on target?", "archetype": "player_sot", "player": "José Fajardo", "position": "striker"},
+        {"id": "6c63350c-f662-44bb-b914-406c60ad3d0c", "q": "Will Harry Kane have at least 1 shot on target?", "archetype": "player_sot", "player": "Harry Kane", "position": "striker"}
+      ]
+    },
+    {
+      "id": "d55a394e-9ba6-4a4a-8112-994724f4b464",
+      "name": "COL vs POR",
+      "opening_time": "2026-06-27T23:30:00.000Z",
+      "closing_time": "2026-06-28T02:00:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "9f7c76ed-e5f2-459b-af43-29e03299257b", "q": "Will Colombia be caught offside 2 or more times?", "archetype": "offside_2plus"},
+        {"id": "c48e143a-ce01-4977-9b79-98077a2e04bc", "q": "In the second half, will Colombia have more shots on target than Portugal?", "archetype": "sot_more_2h"},
+        {"id": "de87022c-d94b-41cc-84c9-096f933d5929", "q": "Will a penalty kick be awarded OR a red card be shown?", "archetype": "pen_or_red"},
+        {"id": "3b9f27bf-b9ca-4604-9112-ef8e99dfbe36", "q": "Will both teams score AND the match have 3 or more total goals?", "archetype": "btts_and_o25"},
+        {"id": "9abcb31a-2213-49d2-a515-43b9cc9a71ab", "q": "Will Colombia win the match?", "archetype": "win"},
+        {"id": "eb47fe91-b920-4acf-9c5a-1009ed7cb33a", "q": "Will Colombia have 4 or more shots on target?", "archetype": "sot_4plus"},
+        {"id": "c703d31f-77ab-4190-8666-7b334aa1bec8", "q": "Will Portugal have 4 or more shots on target?", "archetype": "sot_4plus"},
+        {"id": "c5fada39-248b-4118-ae3e-4e6af345fa96", "q": "Will there be 5 or more total corner kicks in the second half?", "archetype": "corners_5plus_2h"},
+        {"id": "7e371206-e93a-437d-9a4a-a5451e44012e", "q": "Will Luis Díaz score a goal (excluding own goals)?", "archetype": "player_goal", "player": "Luis Díaz", "position": "winger"},
+        {"id": "c52cb04a-6fdc-41ce-be3a-e52331e876e4", "q": "Will Gonçalo Ramos have at least 1 shot on target?", "archetype": "player_sot", "player": "Gonçalo Ramos", "position": "striker"}
+      ]
+    },
+    {
+      "id": "03d5b4fb-f094-43e8-ae66-b99987ea03e7",
+      "name": "COD vs UZB",
+      "opening_time": "2026-06-27T23:30:00.000Z",
+      "closing_time": "2026-06-28T02:00:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "12f8261f-89b4-4c59-ab7b-4cea700478a1", "q": "Will Uzbekistan commit more fouls than DR Congo?", "archetype": "fouls_more"},
+        {"id": "2a93e720-962b-43d9-a6de-c595fdf29a0d", "q": "Will Uzbekistan be caught offside 2 or more times?", "archetype": "offside_2plus"},
+        {"id": "57a0208a-b784-4663-aca6-047aadc0fc4b", "q": "Will both teams have at least 1 shot on target in the second half?", "archetype": "both_sot_2h"},
+        {"id": "2392f003-e56a-4289-a3b1-b07e7de291b2", "q": "Will both teams score AND the match have 3 or more total goals?", "archetype": "btts_and_o25"},
+        {"id": "3f4a50eb-7a9a-4eba-b913-f3bb14d64ee7", "q": "Will a penalty kick be awarded OR a red card be shown?", "archetype": "pen_or_red"},
+        {"id": "bb825e94-a0a4-4ea9-a7f3-9835ecf3bca8", "q": "Will Uzbekistan have more shots on target than DR Congo in the second half?", "archetype": "sot_more_2h"},
+        {"id": "cf17a41d-37e3-4979-82aa-81934ce7b121", "q": "Will Eldor Shomurodov have at least 1 shot on target in the second half?", "archetype": "player_sot", "player": "Eldor Shomurodov", "position": "striker"},
+        {"id": "41bdce13-bfca-4c36-a0bb-12ad94b54db8", "q": "Will DR Congo win the match?", "archetype": "win"},
+        {"id": "f3962b11-d359-4295-8efb-b9a55c574d3b", "q": "Will Cédric Bakambu score or assist a goal (excluding own goals)?", "archetype": "player_goal_or_assist", "player": "Cédric Bakambu", "position": "striker"},
+        {"id": "b7328c17-3a9c-49fe-a9a0-1eceed96a03a", "q": "Will Uzbekistan have 5 or more corner kicks?", "archetype": "corners_5plus"}
+      ]
+    },
+    {
+      "id": "c5b16a05-c823-48c9-ac79-8923c44df945",
+      "name": "ALG vs AUT",
+      "opening_time": "2026-06-28T02:00:00.000Z",
+      "closing_time": "2026-06-28T04:30:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "89051d35-6048-480e-a2f7-925ac9346337", "q": "Will Algeria commit more fouls than Austria?", "archetype": "fouls_more"},
+        {"id": "4e2fd55d-652b-4fb5-9375-31e382bada1c", "q": "Will Austria have more shots on target than Algeria in the second half?", "archetype": "sot_more_2h"},
+        {"id": "e7e494aa-0978-4c61-a66e-91876ab893cb", "q": "Will Austria score the first goal of the second half?", "archetype": "first_goal_2h"},
+        {"id": "37f1e3ff-3bb5-41e3-b1d3-cf9bf02eefa0", "q": "Will Austria score more goals than Algeria in the second half?", "archetype": "goals_more_2h"},
+        {"id": "11105aab-6512-426a-8398-c59c4b8ba8e4", "q": "Will Austria receive more cards than Algeria?", "archetype": "cards_more"},
+        {"id": "3d4d7f4a-ad8a-43f4-a5a6-f777e18c7c76", "q": "Will Algeria win the match?", "archetype": "win"},
+        {"id": "65e32b43-e8cc-4a03-9e13-378ab6b950b6", "q": "Will there be 9 or more total corner kicks?", "archetype": "corners_9plus"},
+        {"id": "a42becae-4a32-411a-904a-813bb1a2af6b", "q": "Will Austria have 5 or more shots on target?", "archetype": "sot_5plus"},
+        {"id": "0689d420-b2dc-4ad5-bcf7-4f62a43ae956", "q": "Will Marcel Sabitzer have at least 1 shot on target?", "archetype": "player_sot", "player": "Marcel Sabitzer", "position": "midfielder"},
+        {"id": "ddb88604-c5b2-41e4-b54c-3a6251ca225a", "q": "Will Algeria have 3 or more shots on target?", "archetype": "sot_3plus"}
+      ]
+    },
+    {
+      "id": "03995b66-4456-4acf-bc95-cf9f1645be0c",
+      "name": "JOR vs ARG",
+      "opening_time": "2026-06-28T02:00:00.000Z",
+      "closing_time": "2026-06-28T04:30:00.000Z",
+      "stage": "group",
+      "coverage_status": "COVERED",
+      "markets": [
+        {"id": "89a055ad-c0e0-4d32-81d3-a697e201d01e", "q": "Will Argentina have at least 1 corner kick in the first half?", "archetype": "corners_1plus_1h"},
+        {"id": "9737e196-a037-4bc7-94c7-6afe9ac69463", "q": "Will Jordan be caught offside 2 or more times?", "archetype": "offside_2plus"},
+        {"id": "e71cc4d9-cfb2-42d6-a795-93c0ca645882", "q": "Will Jordan commit more fouls than Argentina?", "archetype": "fouls_more"},
+        {"id": "36d135a4-2db4-4702-a4f3-e020206a4d9f", "q": "Will Argentina have more shots on target than Jordan in the second half?", "archetype": "sot_more_2h"},
+        {"id": "64167c13-32d0-4b61-bd0b-f54a331f3336", "q": "Will a penalty kick be awarded OR a red card be shown in the match?", "archetype": "pen_or_red"},
+        {"id": "eaf3a69b-22c2-43f1-bde5-80dc167fd331", "q": "Will Jordan score at least 1 goal?", "archetype": "score"},
+        {"id": "3d98c4bc-7429-44d1-ba22-f94b9e89a24f", "q": "Will the match have 2 or fewer total goals?", "archetype": "under25"},
+        {"id": "d246bfc5-f14e-4de2-939f-27d25176efec", "q": "Will Jordan score in the second half?", "archetype": "score_2h"},
+        {"id": "265b0dde-79a3-477b-a989-e86a1bf2b530", "q": "Will Mousa Al-Taamari score or assist a goal (excluding own goals)?", "archetype": "player_goal_or_assist", "player": "Mousa Al-Taamari", "position": "winger"},
+        {"id": "db40a747-94d5-4120-9399-19b8a549c95e", "q": "Will Argentina have 6 or more shots on target?", "archetype": "sot_6plus"}
+      ]
     }
-  ],
-
-  "matches_pending_registry": [
-    "NOR vs FRA (82a50c24) — 2026-06-26T19:00Z",
-    "SEN vs IRQ (236d7678) — 2026-06-26T19:00Z",
-    "CPV vs KSA (739bd122) — 2026-06-27T00:00Z",
-    "URU vs ESP (af3dcfc5) — 2026-06-27T00:00Z",
-    "EGY vs IRN (f24da99f) — 2026-06-27T03:00Z",
-    "New Zealand vs BEL (790fcb5f) — 2026-06-27T03:00Z",
-    "CRO vs GHA (780369fb) — 2026-06-27T21:00Z",
-    "PAN vs ENG (3d8d1b96) — 2026-06-27T21:00Z",
-    "COL vs POR (d55a394e) — 2026-06-27T23:30Z",
-    "COD vs UZB (03d5b4fb) — 2026-06-27T23:30Z",
-    "ALG vs AUT (c5b16a05) — 2026-06-28T02:00Z",
-    "JOR vs ARG (03995b66) — 2026-06-28T02:00Z"
   ]
 }
