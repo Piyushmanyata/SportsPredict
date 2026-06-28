@@ -1,0 +1,170 @@
+{
+  "last_updated": "2026-06-28T00:00:00Z",
+  "lessons": [
+    {
+      "id": "L1",
+      "description": "Don't overrate hosts/favorites; use devigged line",
+      "direction": "use devigged 1X2 anchor, not raw implied odds",
+      "grade": "CONFIRMED",
+      "n": 32,
+      "n_consistent": 30,
+      "source": "v5-audit",
+      "created": "2026-06-12T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L2",
+      "description": "Even matchups carry draw mass",
+      "direction": "add draw mass in near-coinflip matches",
+      "grade": "ACTIVE",
+      "n": 10,
+      "n_consistent": 9,
+      "source": "v5-audit",
+      "created": "2026-06-12T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L3",
+      "description": "Strict 'more than' markets lose on ties; use §5.4 tie-trap table",
+      "direction": "use double-Poisson grid for strict comparisons",
+      "grade": "CONFIRMED",
+      "n": 32,
+      "n_consistent": 29,
+      "source": "v5-audit",
+      "created": "2026-06-12T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L4",
+      "description": "Player 1+SOT >> player goal as value market",
+      "direction": "prefer SOT props over goal props for edge",
+      "grade": "ACTIVE",
+      "n": 12,
+      "n_consistent": 10,
+      "source": "v5-audit",
+      "created": "2026-06-12T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L5",
+      "description": "Pen/red are noise; stay near base rates",
+      "direction": "clamp drama markets to 15-85, anchor at base rates",
+      "grade": "CONFIRMED",
+      "n": 25,
+      "n_consistent": 23,
+      "source": "v5-audit",
+      "created": "2026-06-12T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L6",
+      "description": "T-floor for even matchups; never below anchor-0.1",
+      "direction": "WEAKENING — evidence not strengthening",
+      "grade": "PROVISIONAL",
+      "n": 6,
+      "n_consistent": 3,
+      "source": "v5-audit",
+      "created": "2026-06-12T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L7",
+      "description": "Striker rotation: discount inside lambda, not final output (absorbed into L10)",
+      "direction": "apply rotation_risk inside archetype_player_prop_goal/sot",
+      "grade": "ACTIVE",
+      "n": 10,
+      "n_consistent": 9,
+      "source": "v6-audit",
+      "created": "2026-06-14T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L8",
+      "description": "Correlation cap: >4 markets on one latent axis → batched Monte Carlo",
+      "direction": "run run_mc_correlation() when L8_AXIS_MARKET_THRESHOLD exceeded",
+      "grade": "ACTIVE",
+      "n": 9,
+      "n_consistent": 9,
+      "source": "v6-audit",
+      "created": "2026-06-14T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L9",
+      "description": "HT-tied ceiling 47 unless total lambda < 2.2",
+      "direction": "cap HT draw at 47 when lam_total >= 2.2",
+      "grade": "ACTIVE",
+      "n": 4,
+      "n_consistent": 4,
+      "source": "v6-audit",
+      "created": "2026-06-14T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L10",
+      "description": "56-70% band runs HOT (overpriced); striker SOT band lowered from 60-72 → 52-64",
+      "direction": "apply l10_l12_corrections() for player_sot in 56-70 band without explicit driver",
+      "grade": "ACTIVE",
+      "n": 18,
+      "n_consistent": 16,
+      "source": "v8-audit-118",
+      "created": "2026-06-15T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L11",
+      "description": "50-55% band runs COLD (underpriced) — WEAKENING",
+      "direction": "track; do not bump outputs yet",
+      "grade": "PROVISIONAL",
+      "n": 13,
+      "n_consistent": 8,
+      "source": "v8-audit-118",
+      "created": "2026-06-15T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L12",
+      "description": "Win markets run HOT (n=10, avg Brier 0.303 vs 0.209); firmer DC draw inflation in 40-60 band",
+      "direction": "apply dixon_coles_adjust() with is_tight_match for all near-coinflip wins",
+      "grade": "ACTIVE",
+      "n": 10,
+      "n_consistent": 10,
+      "source": "v8-audit-118",
+      "created": "2026-06-15T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L13",
+      "description": "Performance ranking is RBP-first, not raw Brier",
+      "direction": "rank sessions/matches by weighted RBP (D12)",
+      "grade": "CONFIRMED",
+      "n": 25,
+      "n_consistent": 25,
+      "source": "v7-audit",
+      "created": "2026-06-14T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L14",
+      "description": "Goals overdispersed vs Poisson (~1200 excess goalless + fat 4+ tail)",
+      "direction": "apply OD_GOALLESS_ADD and OD_FOURPLUS_ADD in dixon_coles_adjust()",
+      "grade": "CONFIRMED",
+      "n": 20,
+      "n_consistent": 20,
+      "source": "Goldman-BSL-2026-06-06",
+      "created": "2026-06-15T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    },
+    {
+      "id": "L15",
+      "description": "Crowd spreads probability down field (fav-longshot bias)",
+      "direction": "research signal only; watch for crowd over-pricing heavy favourites",
+      "grade": "ACTIVE",
+      "n": 8,
+      "n_consistent": 7,
+      "source": "v8-audit-118",
+      "created": "2026-06-15T00:00:00Z",
+      "updated": "2026-06-15T00:00:00Z"
+    }
+  ]
+}

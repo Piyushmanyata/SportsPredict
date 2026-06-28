@@ -1,0 +1,15 @@
+{
+  "rates": {
+    "penalty": 0.28,
+    "red_card": 0.22,
+    "clean_sheet": 0.30,
+    "btts": 0.52,
+    "over_2_5": 0.56,
+    "corners_over_9": 0.55,
+    "cards_over_4": 0.48,
+    "player_goal": 0.18,
+    "player_sot": 0.55,
+    "ht_draw": 0.31
+  },
+  "observations": {}
+}

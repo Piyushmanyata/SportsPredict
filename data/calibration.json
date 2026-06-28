@@ -1,0 +1,35 @@
+{
+  "last_updated": "2026-06-15T00:00:00Z",
+  "checkpoints": [
+    {
+      "n": 20,
+      "realized_brier": 0.2356,
+      "self_expected": 0.2214,
+      "gap": 0.0142,
+      "gap_sigma": "0.5σ",
+      "verdict": "GREEN",
+      "notes": "@20 checkpoint (2026-06-12)",
+      "date_ist": "2026-06-12 00:00 IST"
+    },
+    {
+      "n": 79,
+      "realized_brier": 0.2467,
+      "self_expected": 0.2225,
+      "gap": 0.0242,
+      "gap_sigma": "1.2-1.8σ",
+      "verdict": "AMBER",
+      "notes": "@79 deep audit — AMBER; rejected proposed floors (D11 vindicated)",
+      "date_ist": "2026-06-14 00:00 IST"
+    },
+    {
+      "n": 118,
+      "realized_brier": 0.2326,
+      "self_expected": 0.2173,
+      "gap": 0.0153,
+      "gap_sigma": "0.9-1.4σ",
+      "verdict": "AMBER->GREEN",
+      "notes": "@118 deep audit — gap shrank (0.0242→0.0152), vindicated D11 refusal to install floors. L10+L12 → ACTIVE.",
+      "date_ist": "2026-06-15 00:00 IST"
+    }
+  ]
+}
