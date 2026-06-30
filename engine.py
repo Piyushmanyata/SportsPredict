@@ -337,6 +337,7 @@ class Match:
     player_b2_name: str = ""
     player_b2_goal_share: float = 0.12
     player_b2_sot_share: float = 0.18
+    player_b2_involvement: float = 0.25
     player_b2_sot_k: int = 1
 
     # Situational overlays (§5.12) — add before calling compute
@@ -409,8 +410,16 @@ def compute_all_markets(m: Match) -> dict:
         "team_a_more_sot":            p_more_than("sot_ft",     sot_a / max(sot_b, 0.1)),
 
         # ── Threshold counts (§5.3 #7) ────────────────────────────────────
+        "team_a_4plus_sot":           p_team_sot_ge(sot_a, 4),
+        "team_a_5plus_sot":           p_team_sot_ge(sot_a, 5),
         "team_a_6plus_sot":           p_team_sot_ge(sot_a, 6),
         "team_a_7plus_sot":           p_team_sot_ge(sot_a, 7),
+        "team_a_8plus_sot":           p_team_sot_ge(sot_a, 8),
+        "team_b_2plus_sot":           p_team_sot_ge(sot_b, 2),
+        "team_b_4plus_sot":           p_team_sot_ge(sot_b, 4),
+        "team_b_5plus_sot":           p_team_sot_ge(sot_b, 5),
+        "team_b_6plus_sot":           p_team_sot_ge(sot_b, 6),
+        "team_b_7plus_sot":           p_team_sot_ge(sot_b, 7),
         "team_a_6plus_corners":       p_team_corners_ge(cor_a, 6),
         "team_a_7plus_corners":       p_team_corners_ge(cor_a, 7),
         "team_a_8plus_corners":       p_team_corners_ge(cor_a, 8),
@@ -433,6 +442,9 @@ def compute_all_markets(m: Match) -> dict:
         "player_a2_soa":              p_soa(la, m.player_a2_involvement),
         "player_b1_goal":             p_player_goal(lb, m.player_b1_goal_share),
         "player_b1_sot1plus":         p_player_sot_ge(sot_b, m.player_b1_sot_share, 1),
+        "player_b1_sot2plus":         p_player_sot_ge(sot_b, m.player_b1_sot_share, 2),
+        "player_b1_soa":              p_soa(lb, m.player_b1_involvement),
+        "player_b2_goal":             p_player_goal(lb, m.player_b2_goal_share),
         "player_b2_sot_k":            p_player_sot_ge(sot_b, m.player_b2_sot_share, m.player_b2_sot_k),
         "player_b2_soa":              p_soa(lb, m.player_b2_involvement),
 
@@ -470,4 +482,13 @@ def compute_all_markets(m: Match) -> dict:
         "team_b_win_by_2plus":        p_win_by_2plus(lb, la),
         "team_a_more_cards":          p_more_than("cards", m.cards_lam * 0.5 / max(m.cards_lam * 0.5, 0.1)),
         "team_b_more_cards":          p_more_than("cards", 1.0),  # adjust per match
+        # Team-specific goal counts
+        "team_a_3plus_goals":         to_pct(p_poisson_ge(la, 3)),
+        "team_b_3plus_goals":         to_pct(p_poisson_ge(lb, 3)),
+        "team_b_scores_1h":           to_pct(p_scores_1h(lb)),
+        "clean_sheet_a":              to_pct(math.exp(-lb)),
+        "clean_sheet_b":              to_pct(math.exp(-la)),
+        # Team advance (knockout: win in regulation)
+        "team_a_advances":            to_pct(p_win_a),
+        "team_b_advances":            to_pct(p_win_b),
     }

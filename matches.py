@@ -124,6 +124,8 @@ MATCHES = {
         confidence="LOW",
     ),
 
+
+
     "ESP vs AUT": Match(
         name="ESP vs AUT", stage="r32",
         match_id="11bcf2a2-6564-4ade-9cf7-43ee2ecbedd1",
@@ -132,6 +134,12 @@ MATCHES = {
         sot_a=7.5,  sot_b=4.0,
         corners_a=7.0, corners_b=3.5,
         cards_lam=3.5, offside_lam=4.5,
+        player_a1_name="Mikel Oyarzabal", player_a1_goal_share=0.22,
+        player_a1_sot_share=0.22, player_a1_involvement=0.28,
+        player_a2_name="Lamine Yamal", player_a2_goal_share=0.12,
+        player_a2_sot_share=0.25, player_a2_involvement=0.30, player_a2_sot_k=2,
+        player_b1_name="Marcel Sabitzer", player_b1_goal_share=0.18,
+        player_b1_sot_share=0.22, player_b1_involvement=0.28,
         confidence="LOW",
     ),
 
@@ -143,6 +151,12 @@ MATCHES = {
         sot_a=6.5,  sot_b=4.5,
         corners_a=6.0, corners_b=4.5,
         cards_lam=3.7, offside_lam=3.5,
+        player_a1_name="Cristiano Ronaldo", player_a1_goal_share=0.35,
+        player_a1_sot_share=0.35, player_a1_involvement=0.40,
+        player_a2_name="Bruno Fernandes", player_a2_goal_share=0.18,
+        player_a2_sot_share=0.25, player_a2_involvement=0.35, player_a2_sot_k=2,
+        player_b1_name="Luka Modrić", player_b1_goal_share=0.10,
+        player_b1_sot_share=0.15, player_b1_involvement=0.30,
         confidence="LOW",
     ),
 
@@ -154,6 +168,14 @@ MATCHES = {
         sot_a=5.0,  sot_b=4.0,
         corners_a=5.0, corners_b=4.0,
         cards_lam=3.5, offside_lam=3.0,
+        player_a1_name="Breel Embolo", player_a1_goal_share=0.30,
+        player_a1_sot_share=0.25, player_a1_involvement=0.30,
+        player_a2_name="Rubén Vargas", player_a2_goal_share=0.15,
+        player_a2_sot_share=0.22, player_a2_involvement=0.25, player_a2_sot_k=2,
+        player_b1_name="Riyad Mahrez", player_b1_goal_share=0.18,
+        player_b1_sot_share=0.22, player_b1_involvement=0.30,
+        player_b2_name="Amine Gouiri", player_b2_goal_share=0.22,
+        player_b2_sot_share=0.25, player_b2_involvement=0.28, player_b2_sot_k=2,
         confidence="LOW",
     ),
 
@@ -165,6 +187,10 @@ MATCHES = {
         sot_a=4.5,  sot_b=4.0,
         corners_a=4.5, corners_b=4.5,
         cards_lam=3.5, offside_lam=3.0,
+        player_a1_name="Nestory Irankunda", player_a1_goal_share=0.15,
+        player_a1_sot_share=0.22, player_a1_involvement=0.25,
+        player_b1_name="Mahmoud Trezeguet", player_b1_goal_share=0.22,
+        player_b1_sot_share=0.25, player_b1_involvement=0.25,
         confidence="LOW",
     ),
 
@@ -177,6 +203,10 @@ MATCHES = {
         sot_a=7.5,  sot_b=3.0,
         corners_a=7.0, corners_b=3.0,
         cards_lam=3.5, offside_lam=4.5,
+        player_a1_name="Lautaro Martínez", player_a1_goal_share=0.30,
+        player_a1_sot_share=0.28, player_a1_involvement=0.30,
+        player_a2_name="Julián Álvarez", player_a2_goal_share=0.20,
+        player_a2_sot_share=0.22, player_a2_involvement=0.28, player_a2_sot_k=2,
         confidence="LOW",
     ),
 
@@ -188,6 +218,14 @@ MATCHES = {
         sot_a=6.0,  sot_b=4.0,
         corners_a=5.5, corners_b=4.0,
         cards_lam=3.7, offside_lam=3.5,
+        player_a1_name="Luis Díaz", player_a1_goal_share=0.28,
+        player_a1_sot_share=0.25, player_a1_involvement=0.30,
+        player_a2_name="James Rodríguez", player_a2_goal_share=0.12,
+        player_a2_sot_share=0.18, player_a2_involvement=0.35, player_a2_sot_k=2,
+        player_b1_name="Jordan Ayew", player_b1_goal_share=0.22,
+        player_b1_sot_share=0.25, player_b1_involvement=0.28,
+        player_b2_name="Antoine Semenyo", player_b2_goal_share=0.15,
+        player_b2_sot_share=0.22, player_b2_involvement=0.25, player_b2_sot_k=2,
         confidence="LOW",
     ),
 }

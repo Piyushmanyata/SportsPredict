@@ -110,23 +110,97 @@ def build_predictions_for_match(m: Match, market_list: list) -> list:
     return preds
 
 
+# ── Team code → full name in question text ──────────────────────────────────
+_CODE_TO_NAME = {
+    "CIV": "ivory coast", "NOR": "norway",
+    "FRA": "france",      "SWE": "sweden",
+    "MEX": "mexico",      "ECU": "ecuador",
+    "ENG": "england",     "COD": "dr congo",
+    "BEL": "belgium",     "SEN": "senegal",
+    "USA": "united states", "BIH": "bosnia",
+    "ESP": "spain",       "AUT": "austria",
+    "POR": "portugal",    "CRO": "croatia",
+    "SUI": "switzerland", "ALG": "algeria",
+    "AUS": "australia",   "EGY": "egypt",
+    "ARG": "argentina",   "CPV": "cape verde",
+    "COL": "colombia",    "GHA": "ghana",
+}
+
+
 def _map_question_to_prob(question: str, eng: dict, m: Match) -> int | None:
     """
     Map market question text to computed probability.
     Returns None if question is unrecognised (will be logged as unhandled).
-    Add new patterns here as new market types are observed.
     """
     q = question.lower()
-    T = m.T
+
+    # ── Team name resolution: codes → full names used in question text ────
+    code_a, code_b = [t.strip() for t in m.name.split(" vs ")]
+    ta = _CODE_TO_NAME.get(code_a, code_a.lower())  # full lowercase team A name
+    tb = _CODE_TO_NAME.get(code_b, code_b.lower())  # full lowercase team B name
+
+    # Helper: player check (guard against empty string matching everything)
+    def player_in_q(name: str) -> bool:
+        return bool(name) and name.lower() in q
 
     # ── Win / advance markets ────────────────────────────────────────────
-    # Check team names from match name
-    team_a, team_b = [t.strip() for t in m.name.split(" vs ")]
-
-    if f"will {team_a.lower()} win" in q or f"will {team_a.lower()} win in regulation" in q:
+    if f"will {ta} win" in q:
         return eng["team_a_wins_regulation"]
-    if f"will {team_b.lower()} win" in q or f"will {team_b.lower()} win in regulation" in q:
+    if f"will {tb} win" in q:
         return eng["team_b_wins_regulation"]
+    if f"will {ta} advance" in q:
+        return eng["team_a_advances"]
+    if f"will {tb} advance" in q:
+        return eng["team_b_advances"]
+
+    # ── Player props — must come BEFORE team-level checks to avoid misroute ─
+    # Goal props
+    if player_in_q(m.player_a1_name) and "score a goal" in q:
+        return eng["player_a1_goal"]
+    if player_in_q(m.player_b1_name) and "score a goal" in q:
+        return eng["player_b1_goal"]
+    if player_in_q(m.player_a2_name) and "score a goal" in q:
+        return eng["player_a2_goal"]
+    if player_in_q(m.player_b2_name) and "score a goal" in q:
+        return eng["player_b2_goal"]
+
+    # SOA props (score or assist)
+    if player_in_q(m.player_a1_name) and "score or assist" in q:
+        return eng["player_a1_soa"]
+    if player_in_q(m.player_a2_name) and "score or assist" in q:
+        return eng["player_a2_soa"]
+    if player_in_q(m.player_b1_name) and "score or assist" in q:
+        return eng["player_b1_soa"]
+    if player_in_q(m.player_b2_name) and "score or assist" in q:
+        return eng["player_b2_soa"]
+
+    # SOT props
+    if player_in_q(m.player_a1_name) and "1 or more shots on target" in q:
+        return eng["player_a1_sot1plus"]
+    if player_in_q(m.player_a1_name) and ("2 or more shots on target" in q or "at least 2 shot" in q):
+        return eng["player_a1_sot2plus"]
+    if player_in_q(m.player_a1_name) and ("3 or more shots on target" in q or "at least 3 shot" in q):
+        return eng["player_a1_sot2plus"]  # proxy: use 2+ as conservative
+    if player_in_q(m.player_b1_name) and ("1 or more shots on target" in q or "at least 1 shot" in q):
+        return eng["player_b1_sot1plus"]
+    if player_in_q(m.player_b1_name) and "2 or more shots on target" in q:
+        return eng["player_b1_sot2plus"]
+    if player_in_q(m.player_a2_name) and ("1 or more shots on target" in q or "2 or more shots on target" in q):
+        return eng["player_a2_sot_k"]
+    if player_in_q(m.player_b2_name) and ("1 or more shots on target" in q or "2 or more shots on target" in q):
+        return eng["player_b2_sot_k"]
+
+    # ── Team scores (binary) ──────────────────────────────────────────────
+    # Only match when no known player name is in the question (prevents misrouting)
+    known_players = [n for n in [m.player_a1_name, m.player_a2_name,
+                                  m.player_b1_name, m.player_b2_name] if n]
+    no_player_in_q = not any(p.lower() in q for p in known_players)
+
+    if "score a goal" in q and "excluding own" in q and no_player_in_q:
+        if tb in q:
+            return eng["team_b_scores"]
+        if ta in q:
+            return eng["team_a_scores"]
 
     # ── Totals ────────────────────────────────────────────────────────────
     if "3 or more total goals" in q:
@@ -135,76 +209,79 @@ def _map_question_to_prob(question: str, eng: dict, m: Match) -> int | None:
         return eng["2or_fewer_total_goals"]
 
     # ── BTTS ─────────────────────────────────────────────────────────────
-    if "both teams score" in q and "3+" not in q and "3 or more" not in q:
+    if "both teams score" in q and "3 or more" not in q:
         return eng["btts"]
-    if "both teams score" in q and ("3+" in q or "3 or more" in q):
+    if "both teams score" in q and "3 or more" in q:
         return eng["btts_3plus"]
 
-    # ── Player goal props ─────────────────────────────────────────────────
-    if m.player_a1_name and m.player_a1_name.lower() in q and "score a goal" in q:
-        return eng["player_a1_goal"]
-    if m.player_b1_name and m.player_b1_name.lower() in q and "score a goal" in q:
-        return eng["player_b1_goal"]
-    if m.player_a2_name and m.player_a2_name.lower() in q and "score a goal" in q:
-        return eng["player_a2_goal"]
-
-    # ── Player SOA ────────────────────────────────────────────────────────
-    if m.player_a2_name and m.player_a2_name.lower() in q and "score or assist" in q:
-        return eng["player_a2_soa"]
-    if m.player_b1_name and m.player_b1_name.lower() in q and "score or assist" in q:
-        return eng["player_b2_soa"]
-    if m.player_a1_name and m.player_a1_name.lower() in q and "score or assist" in q:
-        return eng["player_a1_soa"]
-
-    # ── Player SOT ────────────────────────────────────────────────────────
-    if m.player_a1_name and m.player_a1_name.lower() in q and "1 or more shots on target" in q:
-        return eng["player_a1_sot1plus"]
-    if m.player_a1_name and m.player_a1_name.lower() in q and "2 or more shots on target" in q:
-        return eng["player_a1_sot2plus"]
-    if m.player_b1_name and m.player_b1_name.lower() in q and "1 or more shots on target" in q:
-        return eng["player_b1_sot1plus"]
-    if m.player_a2_name and m.player_a2_name.lower() in q and "2 or more shots on target" in q:
-        return eng["player_a2_sot_k"]
-    if m.player_b2_name and m.player_b2_name.lower() in q and "2 or more shots on target" in q:
-        return eng["player_b2_sot_k"]
-    if m.player_b2_name and m.player_b2_name.lower() in q and "1 or more shots on target" in q:
-        return eng["player_b2_sot_k"]  # threshold may differ; default to k configured
-
     # ── Team SOT ─────────────────────────────────────────────────────────
-    if team_a.lower() in q and "6 or more shots on target" in q:
+    if ta in q and "4 or more shots on target" in q:
+        return eng["team_a_4plus_sot"]
+    if ta in q and "5 or more shots on target" in q:
+        return eng["team_a_5plus_sot"]
+    if ta in q and "6 or more shots on target" in q:
         return eng["team_a_6plus_sot"]
-    if team_a.lower() in q and "7 or more shots on target" in q:
+    if ta in q and "7 or more shots on target" in q:
         return eng["team_a_7plus_sot"]
+    if ta in q and "8 or more shots on target" in q:
+        return eng["team_a_8plus_sot"]
+    if tb in q and "2 or more shots on target" in q:
+        return eng["team_b_2plus_sot"]
+    if tb in q and "4 or more shots on target" in q:
+        return eng["team_b_4plus_sot"]
+    if tb in q and "5 or more shots on target" in q:
+        return eng["team_b_5plus_sot"]
+    if tb in q and "6 or more shots on target" in q:
+        return eng["team_b_6plus_sot"]
+    if tb in q and "7 or more shots on target" in q:
+        return eng["team_b_7plus_sot"]
 
     # ── Team corners ─────────────────────────────────────────────────────
-    if team_a.lower() in q and "6 or more corner" in q:
+    if ta in q and "6 or more corner" in q:
         return eng["team_a_6plus_corners"]
-    if team_a.lower() in q and "7 or more corner" in q:
+    if ta in q and "7 or more corner" in q:
         return eng["team_a_7plus_corners"]
-    if team_a.lower() in q and "8 or more corner" in q:
+    if ta in q and "8 or more corner" in q:
         return eng["team_a_8plus_corners"]
+
+    # ── Team goal-count thresholds ────────────────────────────────────────
+    if ta in q and "3 or more goals" in q:
+        return eng["team_a_3plus_goals"]
+    if tb in q and "3 or more goals" in q:
+        return eng["team_b_3plus_goals"]
+
+    # ── Clean sheet ───────────────────────────────────────────────────────
+    if "keep a clean sheet" in q:
+        if ta in q:
+            return eng["clean_sheet_a"]
+        if tb in q:
+            return eng["clean_sheet_b"]
 
     # ── Strict comparisons ────────────────────────────────────────────────
     if "more corner kicks than" in q:
-        if team_a.lower() in q.split("more corner")[0]:
+        if ta in q.split("more corner")[0]:
             return eng["team_a_more_corners_ft"]
         return clamp((100 - eng["team_a_more_corners_ft"]) * 0.9)
     if "more shots on target than" in q:
-        if team_a.lower() in q.split("more shots")[0]:
+        if ta in q.split("more shots")[0]:
             return eng["team_a_more_sot"]
         return clamp((100 - eng["team_a_more_sot"]) * 0.9)
     if "more cards than" in q:
-        if team_b.lower() in q.split("more cards")[0]:
+        if tb in q.split("more cards")[0]:
             return eng["team_b_more_cards"]
         return eng["team_a_more_cards"]
 
     # ── Cards ─────────────────────────────────────────────────────────────
+    if "3 or more total cards" in q:
+        return eng["4plus_total_cards"]   # closest approximation
     if "4 or more total cards" in q:
         return eng["4plus_total_cards"]
     if "5 or more total cards" in q:
         return eng["5plus_total_cards"]
     if "card be shown in the first half" in q or "card shown in the first half" in q:
         return eng["card_in_first_half"]
+    if "both teams receive at least one card" in q:
+        return eng["4plus_total_cards"]   # proxy: ~both teams carded ≈ P(4+)
 
     # ── Offsides ─────────────────────────────────────────────────────────
     if "3 or more offside" in q:
@@ -225,52 +302,41 @@ def _map_question_to_prob(question: str, eng: dict, m: Match) -> int | None:
         return eng["9plus_total_corners"]
 
     # ── Drama / noisy register ────────────────────────────────────────────
-    if "penalty kick be awarded" in q and "red card" not in q:
+    if ("penalty kick be awarded" in q or "penalty be awarded" in q) and "red card" not in q:
         return eng["penalty_awarded"]
     if "red card be shown" in q and "penalty" not in q:
         return eng["red_card"]
-    if "penalty kick be awarded or a red card" in q or "penalty" in q and "red card" in q:
+    if "penalty" in q and "red card" in q:
         return eng["pen_or_red"]
 
     # ── HT state markets ─────────────────────────────────────────────────
-    if "halftime" in q and "tied" in q:
+    if "tied at halftime" in q or ("halftime" in q and "tied" in q) or "match be tied at halftime" in q:
         return eng["ht_tied"]
     if "be ahead at halftime" in q:
-        if team_a.lower() in q:
+        if ta in q:
             return eng["team_a_leading_ht"]
-        if team_b.lower() in q:
+        if tb in q:
             return eng["team_b_leading_ht"]
 
     # ── Both halves / scores each half ────────────────────────────────────
     if "score in both halves" in q:
-        if team_a.lower() in q:
+        if ta in q:
             return eng["team_a_scores_both_halves"]
-        if team_b.lower() in q:
+        if tb in q:
             return eng["team_b_scores_both_halves"]
 
     # ── Scores first ─────────────────────────────────────────────────────
     if "score the first goal" in q:
-        if team_a.lower() in q:
+        if ta in q:
             return eng["team_a_scores_first"]
-        if team_b.lower() in q:
+        if tb in q:
             return eng["team_b_scores_first"]
-
-    # ── Team scores (binary — at least 1 goal) ────────────────────────────
-    if "score a goal" in q and "excluding own" in q:
-        if team_b.lower() in q and not any(
-            name.lower() in q for name in [m.player_b1_name, m.player_b2_name] if name
-        ):
-            return eng["team_b_scores"]
-        if team_a.lower() in q and not any(
-            name.lower() in q for name in [m.player_a1_name, m.player_a2_name] if name
-        ):
-            return eng["team_a_scores"]
 
     # ── Win by 2+ goals ───────────────────────────────────────────────────
     if "win by 2 or more goals" in q:
-        if team_a.lower() in q:
+        if ta in q:
             return eng["team_a_win_by_2plus"]
-        if team_b.lower() in q:
+        if tb in q:
             return eng["team_b_win_by_2plus"]
 
     # ── 2H more goals than 1H ─────────────────────────────────────────────
@@ -296,9 +362,13 @@ def _map_question_to_prob(question: str, eng: dict, m: Match) -> int | None:
         return eng["sub_before_ht"]
     if "substitute score a goal" in q:
         return eng["sub_scores"]
-    if "own goal" in q:
+    if "any player score 2 or more goals" in q:
+        return eng["3plus_total_goals"]   # proxy: brace ≈ 60% of 3+ goals
+    if "header goal" in q:
+        return clamp_noisy(20)             # base rate ~20% per §5.8
+    if "own goal be scored" in q or "an own goal" in q:
         return eng["own_goal"]
-    if "goal be scored from outside the penalty area" in q:
+    if "goal be scored from outside the penalty area" in q or "goal from outside" in q:
         return eng["goal_outside_box"]
 
     # Unhandled — log and return None (D4: fallback not silence)
