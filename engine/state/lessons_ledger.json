@@ -1,0 +1,27 @@
+{
+  "_source": "probability-cup-system-instructions-v8-final.md section 10, as of v8/@118",
+  "_lifecycle": "PROVISIONAL (n=1-5) -> ACTIVE (n>=8, directionally consistent) -> CONFIRMED (n>=20 or n>=30/class) -> RETIRED. Only CONFIRMED entries may become an operative output rule (D11).",
+  "lessons": [
+    {"id": "L1", "grade": "CONFIRMED (structural)", "lesson": "Don't overrate hosts/favorites; keep win probability at the (power-corrected) devigged line."},
+    {"id": "L2", "grade": "ACTIVE", "lesson": "Even matchups carry heavy draw mass -- don't overprice either win or star-player goals."},
+    {"id": "L2b", "grade": "PENDING -- do not apply", "lesson": "+2-3 to the stronger-on-paper side in technically even matchups (post KOR upset). n still ~1-2 effective; revisit at n>=5 even-matchup wins."},
+    {"id": "L3", "grade": "CONFIRMED (n=32 @118, avg Brier 0.248 vs self-exp 0.227, +0.021 within noise)", "lesson": "Strict 'more than' markets lose on ties -- use section 5.4 exact table; crowd's tie-blind 50 is the richest well."},
+    {"id": "L4", "grade": "ACTIVE (see L7/L10 risk)", "lesson": "Player 1+ SOT >> player goal as a value market."},
+    {"id": "L5", "grade": "CONFIRMED (n~5 @118, ~20% vs ~31% prior on tiny noisy n)", "lesson": "Penalty/red markets are noise; stay near base rates; absorb bad Briers without reaction."},
+    {"id": "L6", "grade": "PROVISIONAL, evidence NOT strengthening (n=4 @79)", "lesson": "T-floor for technical even matchups: never let fundamentals drag T >0.1 below anchor-implied; no-anchor cases get +0.2-0.3 technical-depth bump. Read BTTS-and-3+ off the grid, never below it."},
+    {"id": "L7", "grade": "ACTIVE (absorbed into L10)", "lesson": "Striker 1+ SOT: discount inside team lambda allocation (not final output) under rotation risk so all derived props stay coherent with anchored team totals. Mandatory Depth Pass post-lineup."},
+    {"id": "L8", "grade": "ACTIVE, evidence strengthened", "lesson": "Correlation cap: >4 markets on one latent axis -> proactive batched MC integration over parameter uncertainty for near-horizon matches, with <=3pt logged uncertainty adjustment as fallback. Never manual output flattening. Risk unit = per-match swing."},
+    {"id": "L9", "grade": "ACTIVE (n=4 @79, ceiling untested)", "lesson": "HT-tied ceiling 47 unless anchor-implied T < 2.2 (Bessel table section 5.5)."},
+    {"id": "L10", "grade": "ACTIVE (n=18, crosses section 9.4 n>=8 directional bar)", "lesson": "56-70% probability band runs hot (overpriced). @118: n=18, hit 44.4% vs avg predicted 61.2% -> gap -16.8pt. Corrective is input-side only: section 5.6 main-striker 1+SOT band lowered 60-72 -> 52-64; any modeled p in the top half of 56-70 now requires an explicit written driver, else regress to the lower band edge. No output ceiling."},
+    {"id": "L11", "grade": "PROVISIONAL, weakening (n=13)", "lesson": "50-55% probability band runs cold (underpriced). @118: n=13, hit 61.5% vs avg predicted 53.3% -> +8.2pt (was +17.4 at n=7). Mirror of L10; an anchor/devig question, not a shading question -- do not bump outputs."},
+    {"id": "L12", "grade": "ACTIVE (n=10, crosses n>=8)", "lesson": "Win markets (archetype #1) run hot. @118: n=10, avg Brier 0.303 vs self-expected 0.209, hit 70%. Symmetric pattern -- low-p underdogs over-winning and modest favourites not winning. Corrective is input-side: hardened Dixon-Coles + overdispersion draw inflation in the 40-60 win band, marginally more fundamentals weight there. Not a floor, not an output shade (the @79 'raise underdog win floors' proposal stays REJECTED per D11)."},
+    {"id": "L13", "grade": "CONFIRMED (mathematical/contest-rule necessity)", "lesson": "Performance ranking must be RBP-first, not raw-Brier-first. CAN-BIH is the canonical correction: best match because it scored +60.67 RBP, not merely because its avg Brier was ~0.179."},
+    {"id": "L14", "grade": "CONFIRMED (structural, external large-sample)", "lesson": "Goal counts are mildly overdispersed vs pure Poisson (Goldman evidence): ~1,200 excess goalless team-games and ~566 excess 4+ games in ~20k internationals (lambda~1.305). Captured as small documented tilts in section 5.2.1 (capped +/-3, merged with Dixon-Coles -- do not double-count)."},
+    {"id": "L15", "grade": "ACTIVE as a research-allocation signal only", "lesson": "Favourite-longshot crowd bias is structural: the crowd spreads probability down the field, over-pricing salient mid-tier names/teams and under-pricing the dominant favourite and boring high-probability outcomes. Never a fade rule -- flag STRONG, confirm true p, submit p (D2)."}
+  ],
+  "prime_directives_reference": {
+    "D2": "Calibration is the strategy -- never shade the final submitted probability, including audit-derived floors/ceilings (see D11).",
+    "D11": "Audit-overcorrection guardrail: a new ledger entry may be proposed at PROVISIONAL with stated n/direction, but may not become an operative rule (floor/ceiling/band-wide shift) until it clears ACTIVE (n>=8 directional) then CONFIRMED (n>=20 or n>=30/class).",
+    "D12": "RBP-first performance objective: rank realized performance by weighted RBP, not raw Brier. D2 still dominates what gets submitted."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "_source": "probability-cup-system-instructions-v8-final.md section 4.3, re-verify only on error",
+  "event": {
+    "name": "Jump Trading Probability Cup",
+    "id": "aa5572ec-5930-4d99-b06b-f8966333d172"
+  },
+  "lobby": {
+    "id": "8df8038c-fd2c-4a5f-be4e-0e11d5966c05",
+    "type": "classic, shared, free, joined"
+  },
+  "live_quirks": [
+    "list_events returns `type` as a UUID-like string, not the documented \"probability\" -- identify the event by id/title, never by filtering type == 'probability'.",
+    "match-level closing_time observed live runs kickoff + 2:30 (settlement window); API docs state market-level closing = match start. D7: the earlier timestamp (kickoff / opening_time) always governs."
+  ],
+  "tournament_shape": {
+    "teams": 48,
+    "groups": 12,
+    "teams_per_group": 4,
+    "group_matches": 72,
+    "knockout_matches": 32,
+    "total_matches": 104,
+    "start_date": "2026-06-11",
+    "end_date": "2026-07-19",
+    "advancement": "top 2 per group + 8 best third-placed"
+  },
+  "coverage_math": {
+    "approx_markets_per_match": 10,
+    "approx_total_markets": 1040,
+    "group_weighted_market_share_pct": 53
+  }
+}

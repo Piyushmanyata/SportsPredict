@@ -1,0 +1,32 @@
+{
+  "_source": "probability-cup-system-instructions-v8-final.md section 10.4 -- append a new entry at every deep audit (section 9.5), do not edit history in place",
+  "records": [
+    {
+      "n_settled": 20,
+      "date": "2026-06-12",
+      "realized_brier": 0.2356,
+      "self_expected_brier": 0.2214,
+      "gap": 0.0142,
+      "sigma_band": "~0.5 sigma -- GREEN, no global recalibration",
+      "notes": "MEX-RSA 0.185 (ran cool), KOR-CZE 0.286 (ran 1.3 sigma hot, damage 51% concentrated on one correlated axis). Tie-trap and low-prior-NO calls performing to spec."
+    },
+    {
+      "n_settled": 79,
+      "date": "2026-06-14",
+      "realized_brier": 0.2467,
+      "self_expected_brier": 0.2225,
+      "gap": 0.0242,
+      "sigma_band": "1.2-1.8 sigma depending on sd assumption (1.43 sigma at sd=0.15) -- AMBER",
+      "notes": "Per-match Brier ranged 0.179 (CAN-BIH, best) to 0.315 (QAT-SUI, worst, the L8 worked example). Three new PROVISIONAL entries opened: L10 (56-70 hot), L11 (50-55 cold), L12 (win markets hot, n=6). Cross-checked against an independent GPT audit; one factual misread (Enciso 1+SOT 2H) caught and excluded."
+    },
+    {
+      "n_settled": 118,
+      "date": "2026-06-15",
+      "realized_brier": 0.2326,
+      "self_expected_brier": 0.2173,
+      "gap": 0.0152,
+      "sigma_band": "0.92 sigma (sd=0.18) to 1.38 sigma (sd=0.12) -- AMBER softening toward GREEN",
+      "notes": "Gap SHRANK from @79's +0.0242 -- vindicates refusing the audit-driven win-market floor (D11). Per-match Brier: GER-CUR 0.132 (best) to QAT-SUI 0.315 (worst, still the L8 example). L10 and L12 graduated to ACTIVE; L11 weakened. No class at n>=30 with consistent drift, so no global recalibration triggered."
+    }
+  ]
+}

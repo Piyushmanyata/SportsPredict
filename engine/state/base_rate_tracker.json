@@ -1,0 +1,32 @@
+{
+  "penalty_per_match": {
+    "prior": 0.36,
+    "observed_count": 1,
+    "n_matches": 5,
+    "working_value": 0.29333333333333333
+  },
+  "red_card_per_match": {
+    "prior": 0.06,
+    "observed_count": 0,
+    "n_matches": 0,
+    "working_value": 0.06
+  },
+  "pen_or_red_per_match": {
+    "prior": 0.32,
+    "observed_count": 1,
+    "n_matches": 5,
+    "working_value": 0.27
+  },
+  "match_cards_mean": {
+    "prior": 3.7,
+    "observed_count": 0,
+    "n_matches": 0,
+    "working_value": 3.7
+  },
+  "goals_per_match_group": {
+    "prior": 2.55,
+    "observed_count": 0,
+    "n_matches": 0,
+    "working_value": 2.55
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "match_name": "MEX vs RSA",
+  "odds_1x2": [1.65, 3.9, 5.5],
+  "odds_over_2_5": 2.05,
+  "odds_under_2_5": 1.78,
+  "players": [
+    {"name": "Home Striker", "team_lambda": 1.7, "goal_share": 0.38, "rotation_factor": 1.0},
+    {"name": "Away Winger", "team_lambda": 0.9, "goal_share": 0.22, "rotation_factor": 0.8}
+  ]
+}
