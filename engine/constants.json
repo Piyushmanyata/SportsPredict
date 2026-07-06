@@ -1,0 +1,33 @@
+{
+  "_source": "probability-cup-system-instructions-v8-final.md §4.3 -- re-verify only on error",
+  "event_id": "aa5572ec-5930-4d99-b06b-f8966333d172",
+  "event_name": "Jump Trading Probability Cup",
+  "lobby_id": "8df8038c-fd2c-4a5f-be4e-0e11d5966c05",
+  "lobby_type": "classic, shared, free, joined",
+  "live_quirks": [
+    "list_events returns `type` as a UUID-like string, not the documented \"probability\" -- identify the event by id/title, never by filtering type == 'probability'.",
+    "list_predictions / list_results grow monotonically and can exceed tool-result token limits late in the tournament -- prefer match-scoped checks during Depth Pass/submission, reserve the full pull for TRIAGE/SETTLE AUDIT (§4.4)."
+  ],
+  "tournament_shape": {
+    "teams": 48,
+    "groups": 12,
+    "group_size": 4,
+    "group_matches": 72,
+    "knockout_matches": 32,
+    "total_matches": 104,
+    "start": "2026-06-11",
+    "end": "2026-07-19"
+  },
+  "stage_weights": {"group": 1, "knockout": 2, "final": 3},
+  "deadline_rule": "hard lock = match opening_time (kickoff). Match-level closing_time observed live runs kickoff+2:30 (settlement window); API docs say market-level closing = match start. Earlier timestamp always governs.",
+  "rate_limits": {"requests_per_min_per_ip": 60, "batch_max": 50},
+  "horizons": {
+    "near_hours": 48,
+    "mid_days": 7,
+    "urgent_cover_hours": 24,
+    "zero_miss_hours": 12
+  },
+  "noisy_register_clamp": {"lo": 15, "hi": 85, "near_certainty_floor": 3, "near_certainty_ceiling": 97},
+  "coherence": {"1x2_sum_tolerance_pts": 2, "anchor_deviation_tolerance_pts": 10, "situational_overlay_cap_pts": 8},
+  "correlation_cap": {"threshold_markets": 4, "of_markets": 10, "default_sigma_frac_of_lambda": 0.15}
+}

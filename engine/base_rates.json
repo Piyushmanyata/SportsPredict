@@ -1,0 +1,9 @@
+{
+  "_source": "probability-cup-system-instructions-v8-final.md §5.8 -- empirical-Bayes tracker, update at every settle audit. posterior = (observed + k*prior)/(n_matches + k). k=7 for first ~30 matches or until n>=10 for the event type, then k=15.",
+  "_as_of": "@118 settled markets (2026-06-15 per the spec's own record)",
+  "penalty_awarded_per_match": {"prior": 0.36, "prior_range": [0.26, 0.34], "tournament_to_date": "n~5 @118, ~20% (1 YES @ MEX-RSA), running under prior on tiny noisy n -- no action (L5)", "working_value": 0.29},
+  "red_card_per_match": {"prior": 0.06, "prior_range": [0.05, 0.08], "tournament_to_date": "unconfirmed", "working_value": 0.06},
+  "pen_or_red": {"prior": null, "prior_range": [0.30, 0.38], "tournament_to_date": "n~5 @118, ~1/5 ~= 20%, noisy-register -- stay on prior, do not chase", "working_value": 0.31},
+  "match_cards_mean": {"prior_range": [3.2, 4.2], "tournament_to_date": "small-n, no strong signal yet", "working_value": 3.5},
+  "goals_per_match_group": {"prior_range": [2.4, 2.7], "tournament_to_date": "mixed across 12 matches @118, no strong drift", "working_value": 2.55}
+}
