@@ -13,6 +13,7 @@ Modules map to spec sections (probability-cup-system-instructions-v8-final.md):
     coherence   §5.11              pre-batch gates
     audit       §9                 outcome decoding, calibration bands, RBP math
     matchsheet  §5.3               one call: anchors in -> all 12 archetypes out
+    markets     §5.3-§5.9          MatchContext + live-question router (see reprice.py)
 
 Everything is pure Python (math module only) except mc.py, which uses numpy
 when available and falls back to the standard library otherwise.
@@ -24,10 +25,12 @@ Quick start:
     for row in sheet.rows: print(row)
 """
 
-from engine import audit, coherence, constants, devig, goals, jointprops, mc, players, thresholds, tietrap
+from engine import audit, coherence, constants, devig, goals, jointprops, markets, mc, players, thresholds, tietrap
+from engine.markets import MatchContext, PlayerCtx, price_question
 from engine.matchsheet import build_match_sheet
 
 __all__ = [
     "audit", "coherence", "constants", "devig", "goals", "jointprops",
-    "mc", "players", "thresholds", "tietrap", "build_match_sheet",
+    "markets", "mc", "players", "thresholds", "tietrap", "build_match_sheet",
+    "MatchContext", "PlayerCtx", "price_question",
 ]

@@ -46,8 +46,14 @@ python3 run_match.py --home 48 --draw 25 --away 27 --over25 51 --team-a NED --te
 # ...or straight from decimal odds (devig §5.1 applied automatically):
 python3 run_match.py --odds-1x2 2.05 3.4 3.9 --odds-ou 1.95 1.87
 
-# Validate the engine against the spec's own table values:
-python3 tests/test_engine.py
+# FULL depth-pass math in one command: fresh anchors + live markets in,
+# routed prices + delta-gated update/submit payloads out (match-spec JSON
+# format is in the reprice.py docstring):
+python3 reprice.py --spec match.json --markets markets.json \
+                   --predictions preds_dump.json
+
+# Validate the engine against the spec's own table values + live inventory:
+python3 tests/test_engine.py && python3 tests/test_markets.py
 ```
 
 ```python
@@ -63,6 +69,15 @@ players.driver_gate(66, has_driver=False) # §5.6  L10 gate on 56-70 top half
 mc.batch_mc([...])                        # §5.11 L8 batched lambda-MC
 audit.decode_outcome(p, brier)            # §9.2  o without web lookups
 audit.rbp_scoreboard(rows)                # §9.6  RBP-first table
+```
+
+```python
+# Session-loop helpers (§3.2) over raw MCP dumps — D10-safe, no stored values:
+from session_tools import triage, coverage, audit_snapshot, plan_updates, chunk
+from engine.markets import MatchContext, PlayerCtx, price_question
+ctx = MatchContext.from_anchors("POR", "ESP", odds_1x2=[4.1, 3.6, 1.87],
+                                odds_ou25=[2.0, 1.833], odds_advance=[2.8, 1.444])
+price_question("Will Spain advance to the quarterfinals?", ctx)  # (66, 'advance')
 ```
 
 ## Engine crib (§5)
@@ -98,13 +113,17 @@ audit.rbp_scoreboard(rows)                # §9.6  RBP-first table
 probability-cup-system-instructions-v8-final.md   authority (v8)
 QUICKREF.md                                       this card
 run_match.py                                      CLI: anchors -> full archetype sheet
+reprice.py                                        CLI: anchors + live markets -> routed prices + payloads
+session_tools.py                                  §3.2 triage/coverage/audit/update-plan over MCP dumps
 engine/constants.py                               IDs, weights, priors, gates (update EB working values here)
 engine/{devig,goals,tietrap,thresholds}.py        §5.1-§5.5 math
 engine/{players,jointprops}.py                    §5.6-§5.7
 engine/{mc,coherence}.py                          §5.11 (L8 MC + gates)
 engine/audit.py                                   §9 decode/calibration/RBP
 engine/matchsheet.py                              §5.3 one-call sheet
+engine/markets.py                                 MatchContext + live-question router (48-team map)
 tests/test_engine.py                              pinned to the spec's table values
+tests/test_markets.py                             router pinned to the live market inventory
 ```
 
 Per D10: nothing in this repo stores prediction values — engine outputs are
