@@ -29,7 +29,7 @@ from engine.goals import (
     p_scores, p_scores_1h, p_scores_2h, p_total_goals_geq, pois_pmf, pois_sf,
     t_from_over25,
 )
-from engine.jointprops import p_scores_first
+from engine.jointprops import joint, p_scores_first
 from engine.players import p_anytime_goal, p_score_or_assist, p_sot_1plus
 from engine.thresholds import p_geq, p_ht_tied
 from engine.tietrap import p_more_exact
@@ -63,11 +63,13 @@ EXOTIC_BASE_RATES = {
     "goal be scored in first-half stoppage": 20,
     "goal be scored in second-half stoppage": 33,
     "substitute score a goal": 31,
+    "substitute score or assist a goal": 40,
     "substitution be made before halftime": 22,
     "9 or more total substitutions": 55,
     "goal be scored before the first hydration break": 45,
     "goal be scored after the second hydration break": 62,
     "card be shown after the second hydration break": 74,
+    "card be shown during first- or second-half stoppage": 37,
     "either team be ruled offside before the first hydration break": 58,
     "first card of the match be shown before the first goal": 45,
     "any player score 2 or more goals": 18,
@@ -78,6 +80,15 @@ _NOISY_HINTS = (
     "penalty", "red card", "offside", "stoppage", "hydration",
     "card be shown", "cards", "first card",
 )
+
+_STAT_PHRASES = (
+    ("shots on target", "sot"), ("corner kicks", "corner"),
+    ("total shots", "shot"), ("cards", "card"), ("fouls", "foul"),
+)
+
+
+def _stat_phrase_key(phrase: str) -> str | None:
+    return next((k for p, k in _STAT_PHRASES if p in phrase), None)
 
 
 @dataclass
@@ -309,6 +320,12 @@ def price_question(question: str, ctx: MatchContext) -> tuple[int, str] | None:
     if "goal be scored in each half" in q or "at least one goal" in q and "each half" in q:
         l1, l2 = _half_lams(t)
         return _pct((1 - math.exp(-l1)) * (1 - math.exp(-l2))), "goal-each-half"
+    if "card be shown" in q and "each half" in q:
+        card_t = ctx.cards_a + ctx.cards_b
+        l1 = (1 - SECOND_HALF_CARD_SHARE) * card_t
+        l2 = SECOND_HALF_CARD_SHARE * card_t
+        v = _pct((1 - math.exp(-l1)) * (1 - math.exp(-l2)))
+        return _clamp_noisy(v), "card-each-half"
     if "second half" in q and ("more goals than the first" in q or
                                "more total goals than the first" in q or
                                "produce more goals" in q):
@@ -375,6 +392,19 @@ def price_question(question: str, ctx: MatchContext) -> tuple[int, str] | None:
                 if k is not None:
                     v = _pct(p_geq(k, lam0))
                     return (_clamp_noisy(v) if key in ("card", "offside") else v), f"team-{key}-k"
+
+    # ---- joint two-stat comparisons ("more X and more Y than") ------------
+    jm = re.search(r"more ([a-z ]+?) and more ([a-z ]+?) than", q)
+    if jm:
+        k1 = _stat_phrase_key(jm.group(1))
+        k2 = _stat_phrase_key(jm.group(2))
+        if k1 and k2:
+            sides = _cmp_sides(q, jm.group(0), ctx)
+            if sides:
+                s, o = sides
+                p1 = p_more_exact(stat[s][k1], stat[o][k1])
+                p2 = p_more_exact(stat[s][k2], stat[o][k2])
+                return _pct(joint(p1, p2, haircut_pts=1.5, same_direction=True)), f"joint-cmp-{k1}-{k2}"
 
     # ---- strict comparisons (tie-trap §5.4) --------------------------------
     for marker, key, half in (("more shots on target than", "sot", None),
